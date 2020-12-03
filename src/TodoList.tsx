@@ -1,24 +1,17 @@
-import React from 'react'
-import { TodolistItem } from './TodolistItem'
+import React from 'react';
+import { TodoListItem } from './TodoListItem';
 
-interface TodoListprops{
+interface TodoListProps {
     todos: Array<Todo>;
-    toggleTodo: toggleTodo
+    toogleTodo: ToogleTodo;
 }
 
-
-
-
-export const TodoList: React.FC<TodoListprops> =({todos,toggleTodo})=> {
-    return (
-        <>
+export const TodoList: React.FC<TodoListProps> = ({ todos, toogleTodo }) =>{
+    return(
         <ul>
-            {todos.map(todo =>{
-             return   <TodolistItem key={todo.text} todo={todo}  toggleTodo={toggleTodo}/>
+            { todos.map((todo, i) => {
+                return <TodoListItem key={i} todo={todo} toggleTodo={toogleTodo}/>
             })}
         </ul>
-        </>
-    );
-};
-
-
+    )
+}

@@ -1,44 +1,40 @@
-import React,{useState} from 'react';
-import { AddTodoForm } from './AddTodoForm';
-import {TodoList} from './TodoList'
-import './app.css'
+import React, { useState } from 'react';
+import { TodoList } from './TodoList';
+import { AddTodoForm } from './TodoForm';
+import './App.css';
 
+const initialTodos: Array<Todo> = [
+  { text: "Create a TodoList project", complete: true },
+]
 
+const App: React.FC = () => {
+  const [todos, setTodos] = useState(initialTodos);
 
-
-const App: React.FC=()=>{
-
-  const list: Array<Todo>=[]
-  const [todos, setTodos] = useState(list)
-
-  const toggleTodo: toggleTodo = (selectedTodo) =>{
-    const newTodos = todos.map(todo =>{
-      if(todo === selectedTodo){
-        return{
-            ...todo,
-            complete: !todo.complete
-    
-          }
+  const toogleTodo: ToogleTodo = selectedTodo => {
+    const newTodos = todos.map(todo => {
+      if (todo === selectedTodo) {
+        return {
+          ...todo,
+          complete: !todo.complete
+        }
       }
-      return todo
-    });
-    setTodos(newTodos)
-  };
-
-  const getTodo: getTodo=newTodos=>{
-    newTodos.trim() !== '' &&
-    setTodos([...todos,{text: newTodos, complete: false}])
+      return todo;
+    })
+    setTodos(newTodos);
   }
 
+  const addTodo: AddTodo = newTodo => {
+    newTodo.trim() !== "" && 
+    setTodos([...todos, { text: newTodo, complete: false}]);
+  }
 
   return (
-
-      <div className='app'>
-        <h3>TodoList</h3>
-       <TodoList todos={todos} toggleTodo={toggleTodo} />
-       <AddTodoForm getTodo={getTodo}  />
-      </div>
-      
+    <div className="App">
+      <h1>Todo List in TypeScript</h1>
+      <AddTodoForm addTodo={addTodo}/>
+      <TodoList todos={todos} toogleTodo={toogleTodo}/>
+    </div>
   );
 }
+
 export default App;
