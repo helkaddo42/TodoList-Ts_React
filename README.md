@@ -1,10 +1,10 @@
-# Todo_List_TS
+## Todo_List_TS
 Création d'une TodoList.
 
-## Pour lancer l'application
+### Pour lancer l'application
 `npm i && npm start` 
 
-## Technologies utilisées
+### Technologies utilisées
 * React
 * TypeScript
 * CSS3
